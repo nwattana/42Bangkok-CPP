@@ -1,5 +1,5 @@
 NAME=megaphone
-CXX=c++
+CXX=c++ -g
 CPPFLAG=-Wall -Wextra -Werror -std=c++98
 CXXFLAG=
 SRC=megaphone.cpp
