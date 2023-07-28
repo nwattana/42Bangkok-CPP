@@ -9,14 +9,14 @@ SRCS = ./src/PhoneBook.cpp \
 
 OBJS=$(SRCS:.cpp=.o)
 
-%.o: %.cpp
-	$(CC) $(CPPFLAGS) -c $< -o $@
+./src/%.o: %.cpp
+	@$(CC) $(CPPFLAGS) -c $< -o $@
+	@printf "\033[32m[✔] %s\n\033[0m" "$<"
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	$(CC) $(CPPFLAGS) -c ${OBJS} -o ${NAME}
-	printf "\033[32m[✔] %s\n\033[0m" "$<"
+	$(CC) $(CPPFLAGS) ${OBJS} -o ${NAME}
 
 clean:
 	rm -f ${OBJS}

@@ -11,7 +11,7 @@ public:
 	std::string classdataname;
 	// Member Functions();
 	void printname() {
-		std::cout << "This Class name is: " << classdataname;
+		std::cout << "This Class name is: " << classdataname << std::endl;
 	}
 };
 
