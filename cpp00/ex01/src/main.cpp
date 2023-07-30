@@ -6,13 +6,14 @@
 /*   By: nwattana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:31:21 by nwattana          #+#    #+#             */
-/*   Updated: 2023/07/30 12:02:10 by nwattana         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:14:13 by nwattana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <iostream>
 #include "../include/main.hpp"
 #include <string>
+#include <stdlib.h>
 int main()
 {
 	std::string input;
@@ -38,6 +39,16 @@ int main()
 		{
 			std::cout << "SEARCH prompt show" << std::endl;
 			ph.d_table();
+			std::cout << "Select Row for in spect [row number]: ";
+			std::getline (std::cin, input);
+			// validate inpu
+			if (ph.validate_index(std::atoi(input.c_str())) == 0)
+			{
+				std::cout << "Invalid index !!" << std::endl;
+				continue ;
+			}
+			ph.throw_contact(std::atoi(input.c_str()));
+
 		}
 		if (input.compare("EXIT") == 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: nwattana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 05:23:11 by nwattana          #+#    #+#             */
-/*   Updated: 2023/07/30 12:02:14 by nwattana         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:14:19 by nwattana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,19 @@ Contact::Contact(){
 }
 
 Contact::~Contact(){
-	std::cout << "DEBUG:: Contact Decon" << std::endl;
+	std::cout << "";
+}
+
+Contact& Contact::operator=(const Contact& other)
+{
+	this->_is_active = 1;
+	this->_fname = other._fname;
+	this->_lname = other._lname;
+	this->_nname = other._nname;
+	this->_phonenumber = other._phonenumber;
+	this->_dark_secret = other._dark_secret;
+
+	return *this;
 }
 
 void Contact::set_index(int num){
@@ -77,7 +89,12 @@ std::string Contact::get_dark_secret(){
 std::string Contact::get_contact(){
 	return "first name\t" + this->_fname +\
 			"\nlast name:\t" + this->_lname +\
-			"\nnicj name:\t" + this->_nname +\
+			"\nnick name:\t" + this->_nname +\
 			"\nPhone nubmer\t" + this->_phonenumber +\
 			"\nDark Secret\t" + this->_dark_secret + "\n";
+}
+
+void Contact::set_active()
+{
+	this->_is_active = 1;
 }

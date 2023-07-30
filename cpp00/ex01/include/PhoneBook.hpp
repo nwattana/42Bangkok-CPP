@@ -6,7 +6,7 @@
 /*   By: nwattana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 13:02:26 by nwattana          #+#    #+#             */
-/*   Updated: 2023/07/30 10:00:35 by nwattana         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:03:02 by nwattana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ class PhoneBook
 		void		contact_row(int index);
 		std::string	fill_cell(std::string str);
 		void		d_table();
+		int			validate_contact();
+		int			validate_index(int i);
+
 	private:
 		int			_current_contact;
 		std::string _tolong(std::string str);

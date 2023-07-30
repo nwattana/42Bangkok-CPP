@@ -6,7 +6,7 @@
 /*   By: nwattana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 06:18:23 by nwattana          #+#    #+#             */
-/*   Updated: 2023/07/30 12:02:12 by nwattana         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:15:25 by nwattana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,44 +21,55 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook()
 {
-	std::cout << "DEBUG:: PhoneBook Decon" << std::endl;
+	std::cout << "";
 }
+
 
 void PhoneBook::create_contact()
 {
 	this->is_start = 1;
 
 	std::string input="";
-	if (this->_current_contact >= 8)
-		this->_current_contact = 0;
-	this->contacts[this->_current_contact].set_index(this->_current_contact + 1);
+	this->contacts[8].set_index(this->_current_contact + 1);
 
 	std::cout << "first name\t:\t";
 	std::getline (std::cin, input);
-	this->contacts[this->_current_contact].set_fname(input);
+	this->contacts[8].set_fname(input);
 
 	std::cout << "last name\t:\t";
 	std::getline (std::cin, input);
-	this->contacts[this->_current_contact].set_lname(input);
+	this->contacts[8].set_lname(input);
 	
 	std::cout << "nick name\t:\t";
 	std::getline (std::cin, input);
-	this->contacts[this->_current_contact].set_nname(input);
+	this->contacts[8].set_nname(input);
 
 	std::cout << "Phone number\t:\t";
 	std::getline (std::cin, input);
-	this->contacts[this->_current_contact].set_phonenumber(input);
+	this->contacts[8].set_phonenumber(input);
 
 	std::cout << "Dark Secret\t:\t";
 	std::getline (std::cin, input);
-	this->contacts[this->_current_contact].set_dark_secret(input);
+	this->contacts[8].set_dark_secret(input);
+	this->contacts[8].set_dark_secret(input);
 
+	if (this->validate_contact() != 1)
+	{
+		std::cout << "Some field is in valid!" << std::endl;
+		return ;
+	}
+
+	if (this->_current_contact == 8)
+		this->_current_contact = 0;
+	this->contacts[this->_current_contact] = this->contacts[8];
+	this->contacts[this->_current_contact].set_index(this->_current_contact + 1);
+	this->contacts[this->_current_contact].set_active();
 	this->_current_contact++;
 }
 
 void PhoneBook::throw_contact(int current_contact)
 {
-	std::cout << this->contacts[current_contact].get_contact();
+	std::cout << this->contacts[current_contact - 1].get_contact();
 }
 
 std::string PhoneBook::_tolong(std::string str)
@@ -73,6 +84,19 @@ void PhoneBook::show_header()
 	std::cout << "o-------------------------------------------o\n";
 	std::cout << "|     index|first name| last name| nick name|\n";
 	std::cout << "=============================================\n";
+}
+
+int PhoneBook::validate_contact()
+{
+	int res = 1;
+
+	this->contacts[8].get_fname().compare("") == 0 ? res = 0 : res = 1;
+	this->contacts[8].get_lname().compare("") == 0 ? res = 0 : res = 1;
+	this->contacts[8].get_nname().compare("") == 0 ? res = 0 : res = 1;
+	this->contacts[8].get_phonenumber().compare("") == 0 ? res = 0 : res = 1;
+	this->contacts[8].get_dark_secret().compare("") == 0 ? res = 0 : res = 1;
+
+	return (res);
 }
 
 void PhoneBook::show_encloser()
@@ -105,16 +129,27 @@ void PhoneBook::contact_row(int index)
 
 void PhoneBook::d_table()
 {
+	int i = 0;
+
 	this->show_header();
-	if (this->is_start == 1){
-		for (int i = 0; i <= this->_current_contact - 1; i++){
-//		std::cout << "index = " << i << std::endl;
-			this->contact_row(i);
-		}
+	while (this->contacts[i]._is_active)
+	{
+		this->contact_row(i);
+		i++;
 	}
 	this->show_encloser();
 }
 
-//TODO Circular ADDING
-//TODO Validate PHONENUMBER
-//TODO Empty handle
+int PhoneBook::validate_index(int index)
+{
+	int i = 0;
+
+	while (this->contacts[i]._is_active)
+		i++;
+	if (index < 1 || index > i)
+	{
+		return (0);
+	}
+	return (1);
+}
+

@@ -6,7 +6,7 @@
 /*   By: nwattana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 12:58:28 by nwattana          #+#    #+#             */
-/*   Updated: 2023/07/30 11:57:59 by nwattana         ###   ########.fr       */
+/*   Updated: 2023/07/30 14:37:45 by nwattana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 class Contact{
 	private:
-		int _is_active;
 		std::string _index;
 		std::string _fname;
 		std::string _nname;
@@ -30,7 +29,11 @@ class Contact{
 	public:
 		Contact();
 		~Contact();
-	
+
+		Contact& operator=(const Contact& other);
+		
+		int _is_active;
+		void set_active();
 		void set_index(int num);
 		void set_fname(std::string fname);
 		void set_lname(std::string lname);
