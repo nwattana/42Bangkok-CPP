@@ -1,6 +1,6 @@
 NAME=MyAweSomePhoneBook
 CC=c++
-CPPFLAGS= -Wall -Wextra -Werror -std=c++98
+CPPFLAGS= -std=c++98
 
 # SRCS=
 SRCS = ./src/PhoneBook.cpp \
@@ -9,7 +9,7 @@ SRCS = ./src/PhoneBook.cpp \
 
 OBJS=$(SRCS:.cpp=.o)
 
-./src/%.o: %.cpp
+%.o :%.cpp
 	@$(CC) $(CPPFLAGS) -c $< -o $@
 	@printf "\033[32m[✔] %s\n\033[0m" "$<"
 
