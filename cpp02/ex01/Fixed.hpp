@@ -2,6 +2,7 @@
 # define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {
@@ -20,10 +21,18 @@ class Fixed
         ~Fixed(void);
         // Assignment operator overload
         Fixed &operator=(const Fixed &rhs);
+
+        // Constructor overload int
+        Fixed(const int value);
+        // Constructor overload float
+        Fixed(const float value);
     
         int getRawBits(void) const;
         void setRawBits(int const raw);
+        float toFloat(void) const;
+        int toInt(void) const;
 };
-// TODO เขียน ยังไม่เสร็จนะ
-// แค่ Copy จาก ex00
+
+std::ostream &operator<<(std::ostream &out, const Fixed &rhs);
+
 #endif
