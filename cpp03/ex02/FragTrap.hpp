@@ -1,16 +1,16 @@
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef FragTrap_HPP
+# define FragTrap_HPP
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : protected ClapTrap {
+class FragTrap : protected ClapTrap {
 
     public:
-        ScavTrap(std::string name);
-        ScavTrap(ScavTrap const & src);
-        ~ScavTrap(void);
+        FragTrap(std::string name);
+        FragTrap(FragTrap const & src);
+        ~FragTrap(void);
 
-        ScavTrap &  operator=(ScavTrap const & src);
+        FragTrap &  operator=(FragTrap const & src);
 
         std::string getName(void) const;
         int         getHitPoints(void) const;
@@ -22,8 +22,8 @@ class ScavTrap : protected ClapTrap {
         void        takeDamage(unsigned int amount);
         void        beRepaired(unsigned int amount);
 
-        void guardGate();
+        void  highFivesGuys();
 };
 
-std::ostream &  operator<<(std::ostream & o, ScavTrap const & src);
+std::ostream &  operator<<(std::ostream & o, FragTrap const & src);
 #endif
