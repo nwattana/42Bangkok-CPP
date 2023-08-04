@@ -11,6 +11,11 @@ Fixed findArea(Point const a, Point const b, Point const c)
 
 bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
+    Fixed area_a = findArea(a, b, point);
+    Fixed area_b = findArea(a, c, point);
+    Fixed area_c = findArea(b, c, point);
+
+
     // Not triangle
     if (a == b || b == c || c == a)
         return false;
@@ -18,8 +23,10 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
     // point == vertice
     if (point == a || point == b || point == c)
         return false;
-    return (findArea(a, b, c) == \
-        findArea(a, b, point) + \
-        findArea(a, c, point) + \
-        findArea(b, c, point));
+
+    // area == 0
+    if (area_a == 0 || area_b == 0 || area_c == 0)
+        return false;
+    
+    return (findArea(a, b, c) == area_a + area_b + area_c);
 }
