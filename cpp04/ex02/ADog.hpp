@@ -1,18 +1,18 @@
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef ADOG_HPP
+# define ADOG_HPP
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Dog : public AAnimal {
+class ADog : public AAnimal {
     public:
-        Dog();
-        Dog(const Dog& src);
-        virtual ~Dog();
+        ADog();
+        ADog(const ADog& src);
+        virtual ~ADog();
 
-        Dog& operator=(const Dog& rhs);
+        ADog& operator=(const ADog& rhs);
         void makeSound() const;
         void setBrain(int i, std::string idea);
         void getBrain() const;

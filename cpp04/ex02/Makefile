@@ -1,5 +1,5 @@
-NAME=Polymorphism
-SRCS=main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp WrongDog.cpp Brain.cpp AAnimal.cpp
+NAME=AbstactClasses
+SRCS=main.cpp AAnimal.cpp Brain.cpp Cat.cpp Dog.cpp ADog.cpp Animal.cpp
 OBJS=$(SRCS:.cpp=.o)
 CC=clang++
 CXXFLAGS=-Wall -Wextra -Werror -std=c++98

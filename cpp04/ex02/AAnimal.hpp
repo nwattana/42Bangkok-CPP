@@ -3,17 +3,16 @@
 
 #include <string>
 #include <iostream>
-#include "Brain.hpp"
 
 class AAnimal {
     protected:
         std::string _type;
-        Brain * brain;
 
     public:
+        AAnimal();
         AAnimal(std::string type);
         AAnimal(const AAnimal& src);
-        virtual ~AAnimal() = 0;
+        virtual ~AAnimal();
 
         AAnimal& operator=(const AAnimal& rhs);
 

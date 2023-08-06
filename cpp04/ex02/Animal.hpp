@@ -3,14 +3,13 @@
 
 #include <string>
 #include <iostream>
-#include "Brain.hpp"
 
 class Animal {
     protected:
         std::string _type;
-        Brain * brain;
 
     public:
+        Animal();
         Animal(std::string type);
         Animal(const Animal& src);
         virtual ~Animal();
