@@ -1,40 +1,60 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
 int main(void) {
-    // Test Orthodox Canonical Form
-    std::cout << "\n==============Test Orthodox Canonical Form============"\
-     << std::endl << std::endl;    
-    FragTrap fragcano("fragcano");
-    std::cout << fragcano << std::endl;
-    FragTrap fragcano2(fragcano);
-    std::cout << fragcano2 << std::endl;
-    FragTrap fragcano3("fragcano3");
-    std::cout << fragcano3 << std::endl;
-    fragcano2.takeDamage(50);
-    fragcano3 = fragcano2;
-    std::cout << fragcano3 << std::endl;
-    std::cout << "\n==============End Test Orthodox Canonical Form============"\
-     << std::endl << std::endl;
 
+    {
+        ClapTrap clapTrap("clapTrap");
+        std::cout << clapTrap << std::endl;
+        ClapTrap clapTrapCopy("clapTraCopy");
+        std::cout << clapTrapCopy << std::endl;
 
+        clapTrap.attack("clapTrapCopy");
+        clapTrapCopy.takeDamage(5);
+        std::cout << clapTrapCopy << std::endl;
+        clapTrapCopy.beRepaired(5);
+        std::cout << clapTrapCopy << std::endl;
+        clapTrapCopy.takeDamage(5);
+        clapTrapCopy.takeDamage(5);
+        std::cout << clapTrapCopy << std::endl;
+        clapTrapCopy.takeDamage(5);
+    }
+    {
+        ScavTrap scavTrap("scavTrap");
+        std::cout << scavTrap << std::endl;
+        scavTrap.beRepaired(50);
+        scavTrap.attack("clapTrap");
+        scavTrap.takeDamage(50);
 
-    FragTrap FragTrap("FragTrap");
-    std::cout << FragTrap << std::endl;
+        std::cout << "========================== from ScavTrap::guardGate()" << std::endl;
+        scavTrap.guardGate();
 
-    FragTrap.beRepaired(50);
-    FragTrap.attack("clapTrap");
-    FragTrap.takeDamage(50);
-    FragTrap.highFivesGuys();
-    std::cout<< std::endl << FragTrap << std::endl;
-
-    FragTrap.takeDamage(100);
-    std::cout << FragTrap << std::endl;
-    
-    FragTrap.beRepaired(50);
-    FragTrap.attack("clapTrap");
-    FragTrap.takeDamage(90);
-    FragTrap.highFivesGuys();
+        
+        std::cout << scavTrap << std::endl;
+        scavTrap.takeDamage(100);
+        std::cout << scavTrap << std::endl;
+        scavTrap.beRepaired(50);
+        scavTrap.attack("clapTrap");
+        scavTrap.takeDamage(90);
+        scavTrap.guardGate();
+    }
+    {
+        FragTrap fragTrap("fragTrap");
+        std::cout << fragTrap << std::endl;
+        fragTrap.beRepaired(50);
+        fragTrap.attack("clapTrap");
+        fragTrap.takeDamage(50);
+        std::cout << "========================== from FragTrap::highFivesGuys()" << std::endl;
+        fragTrap.highFivesGuys();
+        std::cout << fragTrap << std::endl;
+        fragTrap.takeDamage(100);
+        std::cout << fragTrap << std::endl;
+        fragTrap.beRepaired(50);
+        fragTrap.attack("clapTrap");
+        fragTrap.takeDamage(90);
+        fragTrap.highFivesGuys();
+    }
 
     return 0;
 }

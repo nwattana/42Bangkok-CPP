@@ -1,5 +1,5 @@
 NAME=RepetitiveWork
-SRC=main.cpp ClapTrap.cpp FragTrap.cpp
+SRC=main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJ=$(SRC:.cpp=.o)
 CC=clang++
 CFLAGS=-Wall -Wextra -Werror -std=c++98
@@ -13,9 +13,10 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	rm -f $(OBJ) $(NAME)
+	rm -f $(OBJ)
 
 fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
