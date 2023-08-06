@@ -5,7 +5,7 @@
 #include <string>
 #include "WrongAnimal.hpp"
 
-class WrongDog : public WrongAnimal
+class WrongDog : protected WrongAnimal
 {
     public:
         WrongDog();
