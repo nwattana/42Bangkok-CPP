@@ -1,39 +1,56 @@
 #include <iostream>
+#include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
-#include "WrongDog.hpp"
-
 
 int main(void)
 {
+    ///// My Test
+    {
+        int animalNum = 4;
+        Animal *animals[animalNum];
+        for (int i = 0; i < animalNum; i++)
+        {
+            if (i % 2 == 0)
+                animals[i] = new Dog();
+            else
+                animals[i] = new Cat();
+            std::cout << std::endl;
+            std::cout << std::endl;
+        }
 
-    Dog * d1 = new Dog();
-    std::cout << "Dog type: " << d1->getType() << std::endl;
-    std::cout << "Dog make sound: ";
-    d1->makeSound();
-    delete d1;
+        std::cout << "==================  LOOP delete DOG CAT===============" << std::endl;
+        for (int i = 0; i < animalNum; i++)
+        {
+            std::cout << "Animal type: " << animals[i]->getType() << std::endl;
+            delete animals[i];
+            std::cout << std::endl;
+        }
+        std::cout << "==================  LOOP delete DOG CAT END HERE===============" << std::endl;
+    }
     std::cout << std::endl;
-
-    Cat * c1 = new Cat();
-    std::cout << "Cat type: " << c1->getType() << std::endl;
-    std::cout << "Cat make sound: ";
-    c1->makeSound();
-    delete c1;
-    std::cout << std::endl;
-    
-    WrongDog * wd1 = new WrongDog();
-    std::cout << "WrongDog type: " << wd1->getType() << std::endl;
-    std::cout << "WrongDog make sound: ";
-    wd1->makeSound();
-    delete wd1;
-    std::cout << std::endl;
-    
-    WrongCat * wc1 = new WrongCat();
-    std::cout << "WrongCat type: " << wc1->getType() << std::endl;
-    std::cout << "WrongCat make sound: ";
-    wc1->makeSound();
-    delete wc1;
     std::cout << std::endl;
 
+    {
+        // copy constructor test header
+        std::cout << "================== Copy constructor test ===============" << std::endl;
+        Dog dog;
+        dog.setBrain(0, "I am dog1");
+        dog.getBrain();
+        std::cout << std::endl;
+        
+        Dog dog2(dog);
+        dog2.setBrain(1, "I am dog2");
+        dog2.getBrain();
+        std::cout << std::endl;
+
+        Dog dog3 = dog2;
+        dog3.setBrain(2, "I am dog3");
+        dog3.getBrain();
+        std::cout << std::endl;
+    }
+    std::cout << "==================  End Orthodox canonical Class test END HERE ===============" << std::endl;
+    std::cout << std::endl
+              << std::endl;
+    return (0);
 }
