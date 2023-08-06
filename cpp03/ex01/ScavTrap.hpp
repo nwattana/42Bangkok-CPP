@@ -3,7 +3,9 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : protected ClapTrap {
+// why public here ? -> https://stackoverflow.com/questions/860339/difference-between-private-public-and-protected-inheritance
+// all inheritance will have same access level as base class.
+class ScavTrap : public ClapTrap {
 
     public:
         ScavTrap(std::string name);
@@ -12,17 +14,11 @@ class ScavTrap : protected ClapTrap {
 
         ScavTrap &  operator=(ScavTrap const & src);
 
-        std::string getName(void) const;
-        int         getHitPoints(void) const;
-        int         getEnergyPoints(void) const;
-        int         getAttackDamage(void) const;
-        bool        isDead(void);
-
         void        attack(std::string const & target);
-        void        takeDamage(unsigned int amount);
-        void        beRepaired(unsigned int amount);
+        // void        takeDamage(unsigned int amount);
+        // void        beRepaired(unsigned int amount);
 
-        void guardGate();
+        void        guardGate();
 };
 
 std::ostream &  operator<<(std::ostream & o, ScavTrap const & src);

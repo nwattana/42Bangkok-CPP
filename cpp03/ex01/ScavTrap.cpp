@@ -30,31 +30,9 @@ ScavTrap &  ScavTrap::operator=(ScavTrap const & src) {
     return *this;
 }
 
-std::string ScavTrap::getName(void) const {
-    return this->_name;
-}
-
-int         ScavTrap::getHitPoints(void) const {
-    return this->_hitPoints;
-}
-
-int        ScavTrap::getEnergyPoints(void) const {
-    return this->_energyPoints;
-}
-
-int         ScavTrap::getAttackDamage(void) const {
-    return this->_attackDamage;
-}
-
-bool    ScavTrap::isDead(void) {
-    if (this->_hitPoints <= 0)
-        return true;
-    return false;
-}
-
-// Member function
+// Member function Polymorphed
 void       ScavTrap::attack(std::string const & target) {
-    if ( this->isDead() ){
+    if ( this->_hitPoints <= 0 ){
         std::cout << "ScavTrap " << this->_name << " is dead and can't attack" << std::endl;
         return ;
     }
@@ -62,28 +40,9 @@ void       ScavTrap::attack(std::string const & target) {
     << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 }
 
-void        ScavTrap::takeDamage(unsigned int amount) {
-    if ( this->isDead() ){
-        std::cout << "ScavTrap " << this->_name << " is dead and can't take damage" << std::endl;
-        return ;
-    }
-    std::cout << "ScavTrap " << this->_name << " take " << amount \
-    << " points of damage!" << std::endl;
-    this->_hitPoints -= amount;
-}
-
-void        ScavTrap::beRepaired(unsigned int amount) {
-    if ( this->isDead() ){
-        std::cout << "ScavTrap " << this->_name << " is dead and can't be repaired" << std::endl;
-        return ;
-    }
-    std::cout << "ScavTrap " << this->_name << " be repaired " << amount \
-    << " points of damage!" << std::endl;
-    this->_hitPoints += amount;
-}
 
 void    ScavTrap::guardGate() {
-    if ( this->isDead() ){
+    if ( this->_hitPoints <= 0 ){
         std::cout << "ScavTrap " << this->_name << " is dead and can't guard gate" << std::endl;
         return ;
     }
