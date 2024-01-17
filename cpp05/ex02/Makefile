@@ -1,4 +1,4 @@
-NAME=FORM_UP_MAGGOTS
+NAME=No_you_need_form_28B_not_28C
 CXXFLAGS=-Wall -Werror -Wextra -std=c++98
 CC=c++
 

@@ -3,6 +3,10 @@
 
 #include <string>
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
+
 class Bureaucrat
 {
 private:
@@ -38,6 +42,8 @@ public:
 			return "Grade too low";
 		};
 	};
+
+	void signForm(Form & form);
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);

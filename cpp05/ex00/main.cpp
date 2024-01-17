@@ -2,10 +2,19 @@
 #include "Bureaucrat.hpp"
 int main(void)
 {
-	Bureaucrat a;
-	Bureaucrat b(12, "Perm");
-	Bureaucrat c(b);
+	Bureaucrat a(1, "Temp");
+	Bureaucrat b(150, "Perm");
 
-	a = c;
-	std::cout << "Hello World" << std::endl;
+	try {
+		b.decrementGrade();
+	}
+	catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+	try {
+		a.incrementGrade();
+	}
+	catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
 }
