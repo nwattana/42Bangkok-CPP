@@ -2,7 +2,7 @@ NAME=Bureaucrat
 CXXFLAGS=-Wall -Werror -Wextra -std=c++98
 CC=c++
 
-SRCS=${shell find ./srcs -name "*.cpp" -type f 2> /dev/null}
+SRCS=${shell find . -name "*.cpp" -type f 2> /dev/null}
 OBJS=${SRCS:.cpp=.o}
 
 
