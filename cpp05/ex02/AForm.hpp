@@ -30,6 +30,8 @@ class AForm {
 		virtual void setSigned(bool const isSigned);
 		virtual void beSigned(Bureaucrat const &bureaucrat);
 
+		virtual void execute(Bureaucrat const &executor) const = 0;
+
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -54,6 +56,15 @@ class AForm {
 			virtual const char *what() const throw()
 			{
 				return "AForm has already been signed";
+			};
+		};
+
+		class AFormIsNotSignedException : public std::exception
+		{
+			public:
+			virtual const char *what() const throw()
+			{
+				return "AForm is not signed";
 			};
 		};
 };

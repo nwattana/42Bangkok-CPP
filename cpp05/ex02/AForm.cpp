@@ -75,9 +75,9 @@ void AForm::beSigned(Bureaucrat const &bureaucrat)
 
 std::ostream &operator<<(std::ostream &out, const AForm &AForm)
 {
-	out << "AForm name: " << AForm.getName() << std::endl;
-	out << "AForm is signed: " << AForm.getIsSigned() << std::endl;
-	out << "AForm grade to sign: " << AForm.getGradeToSign() << std::endl;
-	out << "AForm grade to execute: " << AForm.getGradeToExecute() << std::endl;
+	out << "AForm poiter name: " << AForm.getName() << std::endl;
+	out << AForm.getName() << "is signed: " << AForm.getIsSigned() << std::endl;
+	out << AForm.getName() << "grade to sign: " << AForm.getGradeToSign() << std::endl;
+	out << AForm.getName() << "grade to execute: " << AForm.getGradeToExecute() << std::endl;
 	return out;
 }
