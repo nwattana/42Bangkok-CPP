@@ -132,6 +132,8 @@ void ScalarConverter::_print_impossible(void)
 	std::cout << "double: impossible" << std::endl;
 }
 
+
+
 std::ostream &  operator<<(std::ostream & o, const ScalarConverter& i) {
     o << "str: " << i.getStr() << std::endl;
 	o << "input_type: " << get_e_type(i.getInputType()) << std::endl;
