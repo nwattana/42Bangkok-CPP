@@ -32,6 +32,7 @@ Array<T>::Array(const Array<T> &other)
 template <typename T>
 Array<T>::~Array(void)
 {
+	std::cout << "Array deconstructor call " << std::endl;
 	delete [] this->ptr;
 }
 
