@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <stdlib.h>
 
 template <typename T>
 class Array
