@@ -18,6 +18,8 @@ RPN &RPN::operator=(const RPN &rpn)
 	if (this == &rpn)
 		return (*this);
 	this->s = rpn.s;
+	this->sign = rpn.sign;
+	this->space = rpn.space;
 	return (*this);
 }
 
