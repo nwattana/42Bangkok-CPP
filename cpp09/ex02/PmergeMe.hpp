@@ -5,11 +5,17 @@
 #include <iostream>
 #include <algorithm>
 #include <iomanip>
+#include <iterator> // std advance std::distance
+#include <sys/time.h>
 class PmergeMe
 {
 private:
 	std::list<int> _list;
 	std::vector<int> _vec;
+	std::vector<int> _original;
+
+	double time_vec;
+	double time_list;
 
 public:
 	PmergeMe();
@@ -20,6 +26,7 @@ public:
 	void try_sort_list();
 
 	void sorted(void);
+	void report(int limit);
 };
 
 template <typename T>

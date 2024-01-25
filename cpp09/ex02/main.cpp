@@ -4,6 +4,23 @@
 #include <limits>
 #include "PmergeMe.hpp"
 
+int isalldigit(char *s)
+{
+	if (!s)
+	{
+		return 0;
+	}
+	while (*s)
+	{
+		if (!::isdigit(*s))
+		{
+			return (0);
+		}
+		s++;
+	}
+	return (1);
+}
+
 int main(int ac, char *av[])
 {
 	int i = 1;
@@ -14,6 +31,11 @@ int main(int ac, char *av[])
 
 	while (i < ac)
 	{
+		if (!isalldigit(av[i]))
+		{
+			std::cout << "Error: invalid input \"" << av[i] << "\" is Not Valid" << std::endl;
+			return (1);
+		}
 		ss << std::string(av[i]);
 		ss >> d;
 		ss.clear();
@@ -24,12 +46,8 @@ int main(int ac, char *av[])
 		}
 		pm.push_back(d);
 		i++;
-		// std::cout << "In loop" << std::endl;
 	}
-	// pm.peek_front(5);
-    // std::cout << "SORTED ++++ ++ +  " << std::endl;
-	pm.peek_front(10);
     pm.sorted();
-	pm.peek_front(10);
+	pm.report(5);
 
 }

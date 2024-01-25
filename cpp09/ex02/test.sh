@@ -10,7 +10,16 @@
 # 	exit 1
 # fi
 # echo -e "${GREEN}Testing...${CLEAR}"
-./PmergeMe `shuf -i 0-1000000 -n 30000 | tr "\n" " "`
+# maximum argument 120000
+echo "========================================"
+./PmergeMe `shuf -i 0-1000000 -n 5 | tr "\n" " "`
+echo "========================================"
+./PmergeMe `shuf -i 0-1000000 -n 3000 | tr "\n" " "`
+echo "========================================"
+./PmergeMe `shuf -i 0-1000000 -n 6000 | tr "\n" " "`
+echo "========================================"
+# ./PmergeMe `shuf -i 0-1000000 -n 128000 | tr "\n" " "`
+# ./PmergeMe `shuf -i 0-1000000 -n 128000 | tr "\n" " "`
 
 # if [ $? -ne 0 ]; then
 # 	echo -e "${RED}Error: Program exited with non-zero status.${CLEAR}"

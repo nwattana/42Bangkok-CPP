@@ -1,6 +1,6 @@
 NAME=PmergeMe
-# CXXFLAGS=-Wall -Werror -Wextra -std=c++98
-CXXFLAGS=-std=c++98 -g
+CXXFLAGS=-Wall -Werror -Wextra -std=c++98
+# CXXFLAGS=-std=c++98 -g
 CC=c++
 
 SRCS=${shell find . -name "*.cpp" -type f 2> /dev/null}
