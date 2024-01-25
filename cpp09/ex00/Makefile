@@ -1,6 +1,6 @@
 NAME=btc
 CXXFLAGS=-Wall -Werror -Wextra -std=c++98
-CC=c++
+CXX=c++
 
 SRCS=${shell find . -name "*.cpp" -type f 2> /dev/null}
 OBJS=${SRCS:.cpp=.o}
@@ -9,7 +9,7 @@ OBJS=${SRCS:.cpp=.o}
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)
