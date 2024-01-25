@@ -27,7 +27,12 @@ int main(int ac, char *av[])
 	std::string str;
 	std::stringstream ss;
 	PmergeMe pm;
-	double d=0;
+	double d = 0;
+	if (ac < 2)
+	{
+		std::cout << "Usage ./PmergeMe [interger]" << std::endl;
+		return (1);
+	}
 
 	while (i < ac)
 	{
@@ -47,7 +52,6 @@ int main(int ac, char *av[])
 		pm.push_back(d);
 		i++;
 	}
-    pm.sorted();
+	pm.sorted();
 	pm.report(5);
-
 }

@@ -156,7 +156,7 @@ void Merge(std::vector<int> &arr, int s, int c_mid, int l)
 	}
 }
 
-void MergeSort(std::vector<int> &arr, int s, int m, int l)
+void MergeSort(std::vector<int> &arr, int s, int l)
 {
 	int c_mid;
 	c_mid = s + (l - s) / 2;
@@ -168,8 +168,8 @@ void MergeSort(std::vector<int> &arr, int s, int m, int l)
 		insertionSortV(it, ite);
 		return;
 	}
-	MergeSort(arr, s, c_mid, c_mid);
-	MergeSort(arr, c_mid, c_mid, l);
+	MergeSort(arr, s, c_mid);
+	MergeSort(arr, c_mid, l);
 	Merge(arr, s, c_mid, l);
 }
 
@@ -258,7 +258,7 @@ void MergeL(std::list<int> &arr, int s, int c_mid, int l)
 	}
 }
 
-void MergeSortL(std::list<int> &arr, int s, int m, int l)
+void MergeSortL(std::list<int> &arr, int s, int l)
 {
 	int c_mid;
 	c_mid = s + (l - s) / 2;
@@ -271,8 +271,8 @@ void MergeSortL(std::list<int> &arr, int s, int m, int l)
 		insertionSortL(it, ite);
 		return;
 	}
-	MergeSortL(arr, s, c_mid, c_mid);
-	MergeSortL(arr, c_mid, c_mid, l);
+	MergeSortL(arr, s, c_mid);
+	MergeSortL(arr, c_mid, l);
 	MergeL(arr, s, c_mid, l);
 }
 
@@ -284,7 +284,7 @@ void PmergeMe::sorted(void)
 	timeval t4;
 
 	gettimeofday(&t, NULL);
-	MergeSort(this->_vec, 0, this->_vec.size() / 2, this->_vec.size());
+	MergeSort(this->_vec, 0, this->_vec.size());
 	gettimeofday(&t2, NULL);
 	this->time_vec = ((t2.tv_sec - t.tv_sec) * 10000000 + (t2.tv_usec - t.tv_usec));
 	if (!isSorted(this->_vec))
@@ -292,7 +292,7 @@ void PmergeMe::sorted(void)
 		std::cout << "LIST: Unexspected result" << std::endl;
 	}
 	gettimeofday(&t3, NULL);
-	MergeSortL(this->_list, 0, this->_list.size() / 2, this->_list.size());
+	MergeSortL(this->_list, 0, this->_list.size());
 	gettimeofday(&t4, NULL);
 	this->time_list = ((t4.tv_sec - t3.tv_sec) * 10000000 + (t4.tv_usec - t3.tv_usec));
 	if (!isSorted(this->_list))
