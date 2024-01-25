@@ -2,7 +2,6 @@
 
 int main(int ac, char *av[])
 {
-	std::basic_stringstream<char> ss;
 	std::string line;
 	std::string::iterator it;
 	std::string::iterator ite;

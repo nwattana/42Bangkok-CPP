@@ -40,7 +40,10 @@ int DateConvertor::days_in_month(int month, int year)
 	int month_days[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	if (month < 1 || month > 12)
+	{
+		std::cout << " Month : " << month << std::endl;
 		throw std::invalid_argument("Invalid month");
+	}
 	if (is_leap_year(year))
 		month_days[1] = 29;
 	return (month_days[month - 1]);
@@ -55,7 +58,7 @@ int DateConvertor::day_in_year(int year)
 	return (365);
 }
 
-int DateConvertor::is_real_day(int day, int month, int year)
+int DateConvertor::is_real_day(int year, int month, int day)
 {
 	if (day < 1 || day > this->days_in_month(month, year))
 		throw std::invalid_argument("Invalid day");
@@ -70,8 +73,7 @@ int DateConvertor::check_date_format(std::string s)
 	{
 		if (this->_separator.find(s[i]) != std::string::npos)
 			count++;
-		if ((this->_separator.find(s[i]) == std::string::npos)\
-		 && !isdigit(s[i]))
+		if ((this->_separator.find(s[i]) == std::string::npos) && !isdigit(s[i]))
 		{
 			return (1);
 		}
@@ -88,7 +90,7 @@ int DateConvertor::day_from_start(int year, int month, int day)
 	int smount = 1;
 	int syear = 1;
 	int total_days = 0;
-	
+
 	for (i = syear; i < year; i++)
 	{
 		total_days += this->day_in_year(i);
@@ -105,7 +107,7 @@ int DateConvertor::day_from_start(int year, int month, int day)
 int DateConvertor::get_day_int(std::string s)
 {
 	int date[3] = {0, 0, 0};
-	int start, end = -1* this->_separator.size();
+	int start, end = -1 * this->_separator.size();
 	int i = 0;
 	std::string token;
 
@@ -138,11 +140,10 @@ std::string int_to_day(int y, int m, int d)
 {
 	std::string s;
 	std::stringstream ss;
-	ss << y << "-" << m << "-" << d;
+	ss << y << "-" << (m < 10 ? "0" : "") << m << "-" << d;
 	ss >> s;
 	return (s);
 }
-
 
 std::string DateConvertor::day_to_date(int day)
 {
@@ -159,7 +160,7 @@ std::string DateConvertor::day_to_date(int day)
 	if (day < 1)
 		throw std::invalid_argument("Invalid day");
 
-	while (day > 366)
+	while (day > 365)
 	{
 		if (this->is_leap_year(year))
 		{
@@ -196,12 +197,12 @@ void test_date_convertor(std::string s)
 	{
 		a = d.get_day_int(s);
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
-		std::cerr << "\""<< s <<"\" : "<< e.what() << std::endl;
-		return ;
+		std::cerr << "\"" << s << "\" : " << e.what() << std::endl;
+		return;
 	}
-	std::cout << "\""<< s << "\" : Date is valid int val = "<< a << std::endl;
+	std::cout << "\"" << s << "\" : Date is valid int val = " << a << std::endl;
 }
 
 void test_date_convertor_dash(std::string s)
@@ -212,12 +213,12 @@ void test_date_convertor_dash(std::string s)
 	{
 		a = d.get_day_int(s);
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
-		std::cerr << "\""<< s <<"\" : "<< e.what() << std::endl;
-		return ;
+		std::cerr << "\"" << s << "\" : " << e.what() << std::endl;
+		return;
 	}
-	std::cout << "\""<< s << "\" : Date is valid int val = "<< a << std::endl;
+	std::cout << "\"" << s << "\" : Date is valid int val = " << a << std::endl;
 }
 
 void test_day(void)
@@ -233,7 +234,7 @@ void test_day(void)
 	{
 		test_date_convertor(NULL);
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << '\n';
 	}
@@ -251,7 +252,7 @@ void test_day(void)
 	{
 		test_date_convertor_dash(NULL);
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << '\n';
 	}
@@ -262,19 +263,18 @@ void test_day(void)
 	DateConvertor dc("/");
 
 	std::cout << "---------------------" << std::endl;
-	std::cout << "1 day from 1/1/1 = " <<dc.day_to_date(1) << std::endl;
-	std::cout << "2 day from 1/1/1 = " <<dc.day_to_date(2) << std::endl;
-	std::cout << "3 day from 1/1/1 = " <<dc.day_to_date(3) << std::endl;
-	std::cout << "365 day from 1/1/1 = " <<dc.day_to_date(365) << std::endl;
-	std::cout << "728565 day from 1/1/1 = " <<dc.day_to_date(728565) << std::endl;
-	std::cout << "100000000 day from 1/1/1 = " <<dc.day_to_date(100000000) << std::endl;
+	std::cout << "1 day from 1/1/1 = " << dc.day_to_date(1) << std::endl;
+	std::cout << "2 day from 1/1/1 = " << dc.day_to_date(2) << std::endl;
+	std::cout << "3 day from 1/1/1 = " << dc.day_to_date(3) << std::endl;
+	std::cout << "365 day from 1/1/1 = " << dc.day_to_date(365) << std::endl;
+	std::cout << "728565 day from 1/1/1 = " << dc.day_to_date(728565) << std::endl;
+	std::cout << "100000000 day from 1/1/1 = " << dc.day_to_date(100000000) << std::endl;
 	try
 	{
-		std::cout << "1000000000 day from 1/1/1 = " <<dc.day_to_date(1000000000) << std::endl;
+		std::cout << "1000000000 day from 1/1/1 = " << dc.day_to_date(1000000000) << std::endl;
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
 }

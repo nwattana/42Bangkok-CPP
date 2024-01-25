@@ -4,6 +4,7 @@
 #include <queue>
 #include <sstream>
 #include <exception>
+
 class RPN
 {
 	private:

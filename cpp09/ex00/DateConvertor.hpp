@@ -32,7 +32,6 @@ class DateConvertor
 		int day_in_year(int year);
 		int is_real_day(int day, int month, int year);
 		std::string day_to_date(int day);
-
 };
 
 void test_day(void);
