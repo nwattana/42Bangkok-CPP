@@ -11,6 +11,8 @@ BitcoinExchange::BitcoinExchange() : _data_file_path("./data.csv"), min_key(std:
 	std::getline(data_file, line);
 	while (std::getline(data_file, line))
 	{
+		if (line == "exchange_rate" || line.empty())
+			continue;
 		add_data(line);
 	}
 	data_file.close();
@@ -98,7 +100,7 @@ float BitcoinExchange::get_price(std::string str)
 	DateConvertor dc("-");
 	int key;
 	float ret;
- 
+
 	if (str.empty())
 	{
 		throw std::invalid_argument("Get price recieved empty string");
@@ -112,12 +114,12 @@ float BitcoinExchange::get_price(std::string str)
 	{
 		key = dc.get_day_int(str);
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
 		std::cout << e.what() << '\n';
 		return (-1);
 	}
-	
+
 	if (key < min_key)
 	{
 		throw std::invalid_argument("You get date to early Bitcoin Not exist yet");
@@ -129,19 +131,15 @@ float BitcoinExchange::get_price(std::string str)
 	}
 	if (this->_data_base.find(key) == this->_data_base.end())
 	{
-		std::cout << "Key not found" << std::endl;
-		try
-		{
-			ret = get_close_iter(key);
-		}
-		catch (std::exception &e)
+
+		ret = get_close_iter(key);
+		if (ret == -1)
 		{
 			throw std::out_of_range(" Key not found \"" + str + "\"");
 		}
 	}
 	else
 	{
-		std::cout << "Key found" << std::endl;
 		ret = (this->_data_base.find(key))->second;
 	}
 	return (ret);
@@ -151,23 +149,13 @@ double BitcoinExchange::get_close_iter(int key)
 {
 	std::map<int, double>::iterator it = this->_data_base.begin();
 	std::map<int, double>::iterator ite = this->_data_base.end();
-	std::map<int, double>::iterator itp;
 
-	std::cout << "get_close_iter" << std::endl;
 	while (it != ite)
 	{
 		if (it->first > key)
 		{
-			itp = it;
-			it++;
-			if (key - itp->first < it->first - key)
-			{
-				return itp->second;
-			}
-			else
-			{
-				return it->second;
-			}
+			it--;
+			return (it->second);
 		}
 		it++;
 	}
