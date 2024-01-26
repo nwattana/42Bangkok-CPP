@@ -13,6 +13,33 @@ BitcoinExchange::BitcoinExchange() : _data_file_path("./data.csv"), min_key(std:
 	{
 		add_data(line);
 	}
+	data_file.close();
+}
+
+BitcoinExchange::BitcoinExchange(std::string input) : _data_file_path(input), min_key(std::numeric_limits<int>::max()), max_key(std::numeric_limits<int>::min())
+{
+	std::ifstream data_file(_data_file_path.c_str());
+	std::string line;
+
+	if (!data_file.is_open())
+		throw std::invalid_argument("File Database Can't open");
+	std::getline(data_file, line);
+	while (std::getline(data_file, line))
+	{
+		add_data(line);
+	}
+}
+
+BitcoinExchange::~BitcoinExchange()
+{
+}
+
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &other)
+{
+	this->_data_base = other._data_base;
+	this->min_key = other.min_key;
+	this->max_key = other.max_key;
+	return (*this);
 }
 
 void BitcoinExchange::add_data(std::string s)
@@ -71,16 +98,38 @@ float BitcoinExchange::get_price(std::string str)
 	DateConvertor dc("-");
 	int key;
 	float ret;
-
+ 
 	if (str.empty())
+	{
 		throw std::invalid_argument("Get price recieved empty string");
-	key = dc.get_day_int(str);
+	}
+	if (!dc.check_date_format(str))
+	{
+		throw std::invalid_argument("Get price recieved invalid date format");
+	}
+
+	try
+	{
+		key = dc.get_day_int(str);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+		return (-1);
+	}
+	
 	if (key < min_key)
+	{
 		throw std::invalid_argument("You get date to early Bitcoin Not exist yet");
+	}
 	if (key > max_key)
+	{
+		std::cout << "Key not found" << std::endl;
 		return (this->_data_base.end())->second;
+	}
 	if (this->_data_base.find(key) == this->_data_base.end())
 	{
+		std::cout << "Key not found" << std::endl;
 		try
 		{
 			ret = get_close_iter(key);
@@ -91,7 +140,10 @@ float BitcoinExchange::get_price(std::string str)
 		}
 	}
 	else
+	{
+		std::cout << "Key found" << std::endl;
 		ret = (this->_data_base.find(key))->second;
+	}
 	return (ret);
 }
 
@@ -101,6 +153,7 @@ double BitcoinExchange::get_close_iter(int key)
 	std::map<int, double>::iterator ite = this->_data_base.end();
 	std::map<int, double>::iterator itp;
 
+	std::cout << "get_close_iter" << std::endl;
 	while (it != ite)
 	{
 		if (it->first > key)

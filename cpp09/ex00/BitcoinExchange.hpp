@@ -16,9 +16,9 @@ class BitcoinExchange
 		double get_close_iter(int key);
 	public:
 		BitcoinExchange();
-		// BitcoinExchange(std::string input);
-		// BitcoinExchange(const char *input, const char *data_file_path);
-		// ~BitcoinExchange();
+		BitcoinExchange(std::string input);
+		~BitcoinExchange();
+		BitcoinExchange &operator=(BitcoinExchange const &other);
 
 		void add_data(std::string s);
 		void show_map(int i);

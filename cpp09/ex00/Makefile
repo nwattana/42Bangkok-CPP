@@ -1,10 +1,12 @@
 NAME=btc
-CXXFLAGS=-Wall -Werror -Wextra -std=c++98
+CXXFLAGS=-Wall -Werror -Wextra --std=c++98 -g
 CXX=c++
 
 SRCS=${shell find . -name "*.cpp" -type f 2> /dev/null}
 OBJS=${SRCS:.cpp=.o}
 
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 all:$(NAME)
 

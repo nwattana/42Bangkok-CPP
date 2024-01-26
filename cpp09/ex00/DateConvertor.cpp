@@ -67,21 +67,23 @@ int DateConvertor::is_real_day(int year, int month, int day)
 
 int DateConvertor::check_date_format(std::string s)
 {
-	int i = 0;
+	long unsigned int i = 0;
 	int count = 0;
-	while (s[i])
+	if (s.empty())
+		return (1);
+	while (i < s.size() && s[i])
 	{
 		if (this->_separator.find(s[i]) != std::string::npos)
 			count++;
 		if ((this->_separator.find(s[i]) == std::string::npos) && !isdigit(s[i]))
 		{
-			return (1);
+			return (0);
 		}
 		i++;
 	}
 	if (count != 2)
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
 int DateConvertor::day_from_start(int year, int month, int day)
@@ -113,8 +115,10 @@ int DateConvertor::get_day_int(std::string s)
 
 	if (s.empty())
 		throw std::invalid_argument("Invalid date format empty string");
-	if (check_date_format(s))
+	if (!check_date_format(s))
+	{
 		throw std::invalid_argument("Invalid date format not valid date format string");
+	}
 	do
 	{
 		start = end + this->_separator.size();
@@ -125,7 +129,6 @@ int DateConvertor::get_day_int(std::string s)
 		date[i] = atoi(token.c_str());
 		i++;
 	} while (end != -1 && i < 3);
-
 	for (i = 0; i < 3; i++)
 	{
 		if (date[i] <= 0)
@@ -199,7 +202,7 @@ void test_date_convertor(std::string s)
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << "\"" << s << "\" : " << e.what() << std::endl;
+		std::cout << "\"" << s << "\" : " << e.what() << std::endl;
 		return;
 	}
 	std::cout << "\"" << s << "\" : Date is valid int val = " << a << std::endl;
@@ -215,7 +218,7 @@ void test_date_convertor_dash(std::string s)
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << "\"" << s << "\" : " << e.what() << std::endl;
+		std::cout << "\"" << s << "\" : " << e.what() << std::endl;
 		return;
 	}
 	std::cout << "\"" << s << "\" : Date is valid int val = " << a << std::endl;
@@ -236,7 +239,7 @@ void test_day(void)
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 	test_date_convertor("1/1/0");
 	test_date_convertor("1/1/-1");
@@ -254,7 +257,7 @@ void test_day(void)
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 	test_date_convertor_dash("1-1-0");
 	test_date_convertor_dash("1-1--1");
@@ -275,6 +278,6 @@ void test_day(void)
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 }
