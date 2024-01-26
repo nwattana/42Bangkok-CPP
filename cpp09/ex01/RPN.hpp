@@ -1,14 +1,14 @@
 #pragma once
 
 #include <iostream>
-#include <queue>
+#include <stack>
 #include <sstream>
 #include <exception>
 
 class RPN
 {
 	private:
-		std::queue<double> s;
+		std::stack<double> s;
 		std::string sign;
 		int space;
 

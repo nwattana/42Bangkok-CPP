@@ -17,7 +17,8 @@ int main(int ac, char *av[])
 	ite = line.end();
 	while (it != ite)
 	{
-		try{
+		try
+		{
 			rpn.eval(*it);
 		}
 		catch (std::exception &e)
@@ -27,6 +28,16 @@ int main(int ac, char *av[])
 		}
 		it++;
 	}
-	std::cout << rpn.getval() << std::endl;
+
+	try
+	{
+
+		std::cout << rpn.getval() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "ERROR: " << e.what() << std::endl;
+		return (1);
+	}
 	return (0);
 }

@@ -1,4 +1,4 @@
-NAME=rpn
+NAME=RPN
 CXXFLAGS=-Wall -Werror -Wextra  -std=c++98
 CXX=c++
 

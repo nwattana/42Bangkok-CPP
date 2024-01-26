@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "case 1" && ./RPN "/ 1 1 1 /"
+echo "case 2" && ./RPN "1 2 3 4 5 + + + +"
+echo "case 3" && ./RPN "1 1 - 1 / "
+echo "case 4" && ./RPN "9 8 7 6 5 4 3 2 1 - - - - - - - -"
+echo "case 5" && ./RPN "5 3 4 + *"
+echo "case 6" && ./RPN "1 2 3 4 5 6 7 8 9 + + + + + + +"
+echo "case 7" && ./RPN "1 2 + 3 4 + *" 
+echo "case 8" && ./RPN "2 3 ^ 3 4 ^ +"
+echo "case 9" && ./RPN "5 1 2 + 4 * + 3 -"
+echo "case 10" && ./RPN
+echo "case 11" && ./RPN "6 2 / 3 -"
+echo "case 12" && ./RPN "2 7 + 3 / 14 3 - 4 * + 2 /"
+echo "case 13" && ./RPN "1 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 +"
+echo "case 14" && ./RPN "7 8 + 3 2 + /"
+echo "case 17" && ./RPN "1 2 3 4 5 - - - -"
+echo "case 18" && ./RPN "1 2 3 4 5 - - -"
+echo "case 19" && ./RPN "1 2 3 * 4 5 - -"
+echo "case 20" && ./RPN "9 5 3 + 2 4 - - +"
+echo "case 20" && ./RPN "9 5 3 + 2 4 - - +" " 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 + + + + +"
