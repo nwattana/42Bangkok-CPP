@@ -48,15 +48,15 @@ double RPN::eval(char input)
 				temp = a + b;
 				break;
 			case '-':
-				temp = a - b;
+				temp = b - a;
 				break;
 			case '*':
 				temp = a * b;
 				break;
 			case '/':
-				if (b == 0)
+				if (a == 0)
 					throw std::invalid_argument("Division by zero");
-				temp = a / b;
+				temp = b / a;
 				break;
 		}
 		this->s.push(temp);
@@ -69,5 +69,10 @@ double RPN::getval(void)
 {
 	if (this->s.size() != 1)
 		throw std::invalid_argument("Invalid input not enough operators");
+	return (this->s.top());
+}
+
+double RPN::check_top(void)
+{
 	return (this->s.top());
 }

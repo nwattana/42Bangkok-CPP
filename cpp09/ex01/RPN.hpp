@@ -20,4 +20,5 @@ class RPN
 
 		double eval(char input);
 		double getval(void);
+		double check_top(void);
 };

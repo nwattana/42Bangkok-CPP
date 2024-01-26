@@ -20,6 +20,8 @@ int main(int ac, char *av[])
 		try
 		{
 			rpn.eval(*it);
+			// std::cout << rpn.check_top() << std::endl;
+
 		}
 		catch (std::exception &e)
 		{
